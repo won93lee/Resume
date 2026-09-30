@@ -12,6 +12,9 @@
       --font-heading: 'HelveticaNowDisplay-Medium', 'Helvetica Neue', Arial, sans-serif;
       --font-body: 'HelveticaNowDisplayW01-Rg', 'Helvetica Neue', Arial, sans-serif;
     }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: var(--font-body);
       margin: 0;
@@ -28,11 +31,18 @@
     .logo-heading {
       font-family: var(--font-heading);
     }
+    .section-heading {
+      font-family: var(--font-heading);
+    }
+    /* Offset for fixed navbar when scrolling to anchors */
+    section[id] {
+      scroll-margin-top: 5rem;
+    }
   </style>
 </head>
-<body class="relative min-h-screen overflow-hidden bg-black text-black">
+<body class="relative bg-black text-black">
 
-  <!-- Background video -->
+  <!-- Background video (hero only visual layer) -->
   <video
     id="bg-video"
     class="fixed inset-0 z-0 h-full w-full object-cover"
@@ -43,26 +53,26 @@
     preload="auto"
   ></video>
 
-  <!-- Subtle overlay for text readability -->
+  <!-- Subtle overlay -->
   <div class="pointer-events-none fixed inset-0 z-[1] bg-black/20"></div>
 
   <!-- Navbar -->
-  <nav class="fixed top-0 z-10 flex w-full items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
+  <nav id="navbar" class="fixed top-0 z-20 flex w-full items-center justify-between px-5 py-4 sm:px-8 sm:py-5 transition-colors duration-300">
     <!-- Logo -->
-    <div class="flex items-center gap-3">
+    <a href="#" class="flex items-center gap-3" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
       <span class="logo-heading text-[21px] tracking-tight text-black sm:text-[26px]">Harold F.®</span>
       <span class="select-none text-[25px] text-black sm:text-[30px]" style="letter-spacing: -0.02em">✳︎</span>
-    </div>
+    </a>
 
     <!-- Desktop nav links -->
     <div class="hidden items-center text-[23px] text-black md:flex">
-      <a href="#experience" class="transition-opacity hover:opacity-60">Experience</a>
+      <a href="#experience" class="nav-link transition-opacity hover:opacity-60">Experience</a>
       <span class="mx-1 text-black/60">,</span>
-      <a href="#skills" class="transition-opacity hover:opacity-60">Skills</a>
+      <a href="#skills" class="nav-link transition-opacity hover:opacity-60">Skills</a>
       <span class="mx-1 text-black/60">,</span>
-      <a href="#education" class="transition-opacity hover:opacity-60">Education</a>
+      <a href="#education" class="nav-link transition-opacity hover:opacity-60">Education</a>
       <span class="mx-1 text-black/60">,</span>
-      <a href="#certifications" class="transition-opacity hover:opacity-60">Certifications</a>
+      <a href="#certifications" class="nav-link transition-opacity hover:opacity-60">Certifications</a>
     </div>
 
     <!-- Desktop CTA -->
@@ -83,7 +93,7 @@
   <!-- Mobile overlay -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 z-[9] flex flex-col justify-center gap-8 bg-white/95 px-8 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+    class="fixed inset-0 z-[19] flex flex-col justify-center gap-8 bg-white/95 px-8 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
   >
     <a href="#experience" class="mobile-link text-[32px] font-medium text-black">Experience</a>
     <a href="#skills" class="mobile-link text-[32px] font-medium text-black">Skills</a>
@@ -92,8 +102,8 @@
     <button id="mobile-contact" class="text-left text-[32px] font-medium text-black underline underline-offset-2">Contact me</button>
   </div>
 
-  <!-- Hero -->
-  <section class="relative z-[1] flex h-screen flex-col overflow-hidden px-5 pb-12 sm:px-8 md:justify-center md:px-10 md:pb-0">
+  <!-- ========== HERO ========== -->
+  <section class="relative z-[2] flex h-screen flex-col overflow-hidden px-5 pb-12 sm:px-8 md:justify-center md:px-10 md:pb-0">
     <div class="relative z-10 mt-auto max-w-xl md:mt-0">
       <!-- Blurred intro -->
       <div
@@ -141,6 +151,233 @@
     </div>
   </section>
 
+  <!-- ========== RESUME CONTENT (scrollable) ========== -->
+  <div class="relative z-[5] bg-white text-black">
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="px-5 py-16 sm:px-8 md:px-10 lg:px-16">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="section-heading mb-10 text-3xl tracking-tight sm:text-4xl">Experience</h2>
+
+        <!-- Vanjure -->
+        <article class="mb-12 border-b border-black/10 pb-12">
+          <div class="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="text-xl font-medium sm:text-2xl">Expert Systems Engineer</h3>
+            <span class="text-sm text-black/60 sm:text-base">Nov 2022 – Present</span>
+          </div>
+          <p class="mb-4 text-base text-black/70">Vanjure LLC · Virginia</p>
+          <ul class="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-black/80 sm:text-base">
+            <li>Serve as primary operational advisor for large-scale enterprise clients, translating complex infrastructural and governance requirements into clear, result-oriented strategic action plans aligned with overarching organizational goals.</li>
+            <li>Lead cross-functional coordination between security, operations, risk mitigation, and asset procurement teams to guarantee 100% alignment with strict institutional compliance and governance frameworks.</li>
+            <li>Orchestrate end-to-end infrastructure lifecycle operations, including capacity planning, resource optimization, strategic patching schedules, and version updates across wide organizational frameworks.</li>
+            <li>Optimized operational process provisioning, lowering annual asset delivery overhead by 60% through structured resource management strategies while significantly improving timeline execution.</li>
+            <li>Managed robust secure access ecosystems, enforcing institutional security controls, zero-trust framework protocols, and identity authentication matrices.</li>
+            <li>Supervised distributed service-delivery tracking pipelines using enterprise tracking software to maintain transparency and coordinate project sprints across continuous technical workflows.</li>
+          </ul>
+        </article>
+
+        <!-- AIM Innovations -->
+        <article class="mb-12 border-b border-black/10 pb-12">
+          <div class="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="text-xl font-medium sm:text-2xl">SAP Field Systems Administrator III</h3>
+            <span class="text-sm text-black/60 sm:text-base">Nov 2019 – Nov 2022</span>
+          </div>
+          <p class="mb-4 text-base text-black/70">AIM Innovations LLC · Virginia</p>
+          <ul class="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-black/80 sm:text-base">
+            <li>Directed multi-site operational overhauls and remote systems remediation during high-pressure transitions, ensuring 100% business continuity, system stability, and resource protection across distributed regional footprints.</li>
+            <li>Headed internal compliance alignment teams as a senior technical escalation lead, investigating and resolving complex operational variances to achieve zero non-compliance findings across rigorous third-party audits.</li>
+            <li>Engineered automated configuration frameworks and structured performance baselines, reducing administrative overhead by 33% and vulnerability metrics by 80%.</li>
+            <li>Designed end-to-end security configurations across large network layers, implementing strict identity access policies to safeguard mission-critical organizational data points.</li>
+            <li>Coordinated multi-million dollar asset procurement pipelines and logistics operations in accordance with organizational guidelines, reinforcing data accuracy and long-term continuity.</li>
+          </ul>
+        </article>
+
+        <!-- TPGS Federal -->
+        <article class="mb-12 border-b border-black/10 pb-12">
+          <div class="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="text-xl font-medium sm:text-2xl">Senior Mission Support Officer</h3>
+            <span class="text-sm text-black/60 sm:text-base">Aug 2018 – Nov 2019</span>
+          </div>
+          <p class="mb-4 text-base text-black/70">TPGS Federal · Virginia</p>
+          <ul class="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-black/80 sm:text-base">
+            <li>Authored senior-level briefings, analytical assessments, and tactical reports for executive decision-makers, ensuring technical precision, alignment with policy priorities, and data integrity.</li>
+            <li>Managed complex project lifecycles and coordinated cross-functional work pipelines using enterprise governance tracking tools to maximize operational transparency across parallel schedules.</li>
+            <li>Controlled complex financial documentation pipelines, asset procurement logistics, and international mobility tracking profiles to support continuous, risk-resistant operations.</li>
+          </ul>
+        </article>
+
+        <!-- GMU Technical Office Assistant -->
+        <article class="mb-12 border-b border-black/10 pb-12">
+          <div class="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="text-xl font-medium sm:text-2xl">Technical Office Assistant III</h3>
+            <span class="text-sm text-black/60 sm:text-base">Jan 2014 – Sep 2017</span>
+          </div>
+          <p class="mb-4 text-base text-black/70">George Mason University · Virginia</p>
+          <ul class="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-black/80 sm:text-base">
+            <li>Administered campus-wide cloud architecture and Oracle-based institutional databases, driving system availability and operational security for high-volume student transaction systems.</li>
+            <li>Coordinated the deployment, life-cycle auditing, and maintenance of critical technology portfolios and technical infrastructure across multi-site academic spaces.</li>
+            <li>Partnered with cross-functional engineering teams to implement predictive system uptime monitoring, maintaining strict service level agreements (SLAs) and scalability benchmarks in high-demand environments.</li>
+          </ul>
+        </article>
+
+        <!-- GMU South Korea -->
+        <article class="mb-4">
+          <div class="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="text-xl font-medium sm:text-2xl">Assistant Program &amp; University Organizer</h3>
+            <span class="text-sm text-black/60 sm:text-base">Aug 2015 – Dec 2015</span>
+          </div>
+          <p class="mb-4 text-base text-black/70">George Mason University · South Korea</p>
+          <ul class="list-disc space-y-2 pl-5 text-[15px] leading-relaxed text-black/80 sm:text-base">
+            <li>Managed and verified cross-border documentation (DS-160) for international populations, ensuring 100% adherence to strict federal and international regulatory frameworks.</li>
+            <li>Acted as the primary operations liaison between domestic academic offices and international teams, facilitating high-level diplomatic appointments with the U.S. Embassy and coordinating large-scale cross-border institutional events.</li>
+            <li>Spearheaded strategic orientation frameworks and outreach initiatives to optimize international integration, client satisfaction, and operational efficiency across distributed networks.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="border-t border-black/10 bg-neutral-50 px-5 py-16 sm:px-8 md:px-10 lg:px-16">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="section-heading mb-10 text-3xl tracking-tight sm:text-4xl">Skills</h2>
+
+        <div class="mb-12">
+          <h3 class="mb-5 text-lg font-medium sm:text-xl">Core Competencies</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Program Governance &amp; Operational Risk Management</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Multi-Stakeholder Coordination &amp; Alignment</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Regulatory Compliance &amp; Audit Readiness</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Executive Briefings &amp; Strategic Advisement</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Cross-Functional Leadership &amp; Team Management</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Resource Optimization &amp; Procurement Logistics</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Complex Issue Troubleshooting &amp; Agility</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Data Analysis &amp; Institutional Reporting</span>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3 class="mb-5 text-lg font-medium sm:text-xl">Technical Tools</h3>
+          <div class="grid gap-6 sm:grid-cols-2">
+            <div>
+              <p class="mb-2 text-sm font-medium text-black/50">Project &amp; Lifecycle Management</p>
+              <p class="text-[15px] leading-relaxed">Jira, Confluence, ServiceNow, Smartsheet</p>
+            </div>
+            <div>
+              <p class="mb-2 text-sm font-medium text-black/50">Enterprise Operations &amp; Systems</p>
+              <p class="text-[15px] leading-relaxed">Citrix Apps/Desktops, Nutanix HCI, VMware, NetScaler, Active Directory</p>
+            </div>
+            <div>
+              <p class="mb-2 text-sm font-medium text-black/50">Automation &amp; Reporting</p>
+              <p class="text-[15px] leading-relaxed">PowerShell, Configuration Management Matrices, CI/CD Workflows</p>
+            </div>
+            <div>
+              <p class="mb-2 text-sm font-medium text-black/50">Office Ecosystems</p>
+              <p class="text-[15px] leading-relaxed">MS Office Suite (VS Code, Visio, Excel, PowerPoint, SharePoint)</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="mb-5 text-lg font-medium sm:text-xl">Languages</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">English — Native/Fluent</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Korean — Intermediate</span>
+            <span class="rounded-full border border-black/15 bg-white px-4 py-1.5 text-sm">Tagalog — Intermediate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="border-t border-black/10 px-5 py-16 sm:px-8 md:px-10 lg:px-16">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="section-heading mb-10 text-3xl tracking-tight sm:text-4xl">Education</h2>
+        <article>
+          <div class="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="text-xl font-medium sm:text-2xl">Bachelor of Arts in Global Affairs</h3>
+          </div>
+          <p class="mb-2 text-base text-black/70">George Mason University · Fairfax, VA</p>
+          <p class="mb-1 text-[15px] text-black/80">Concentration: Human Security &amp; Global Governance</p>
+          <p class="mb-1 text-[15px] text-black/80">Minor: Intelligence Analysis</p>
+          <p class="mb-1 text-[15px] text-black/80">Specialized Learning: International Economic Policy</p>
+          <p class="mt-3 text-[15px] text-black/60">Study Abroad: George Mason Korea, Songdo, Incheon (Aug 2015 – Jul 2016)</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="border-t border-black/10 bg-neutral-50 px-5 py-16 sm:px-8 md:px-10 lg:px-16">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="section-heading mb-10 text-3xl tracking-tight sm:text-4xl">Certifications &amp; Training</h2>
+        <ul class="space-y-3 text-[15px] leading-relaxed sm:text-base">
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>Google AI Professional</span>
+            <span class="text-sm text-black/50">2026–2050</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>AWS Certified Cloud Practitioner</span>
+            <span class="text-sm text-black/50">2023–2026</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>AWS Certified SysOps Administrator</span>
+            <span class="text-sm text-black/50">2023–2026</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>CompTIA Security+ SY0-701</span>
+            <span class="text-sm text-black/50">2025–2028</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>Palo Alto Networks Cybersecurity Professional</span>
+            <span class="text-sm text-black/50">2023–2026</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>IT Infrastructure Library (ITIL 4)</span>
+            <span class="text-sm text-black/50">2024–2027</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>Google Project Management Professional</span>
+            <span class="text-sm text-black/50">2022–2050</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>FEMA All-Hazards Liaison Officer (L956)</span>
+            <span class="text-sm text-black/50">2016–2050</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 border-b border-black/5 pb-3">
+            <span>FEMA Advanced Professional Series (APS) Certificate</span>
+            <span class="text-sm text-black/50">2016–2050</span>
+          </li>
+          <li class="flex flex-wrap items-baseline justify-between gap-x-4 pb-1">
+            <span>FEMA Professional Development Series (PDS)</span>
+            <span class="text-sm text-black/50">2015–2050</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER -->
+    <section id="contact" class="border-t border-black/10 px-5 py-16 sm:px-8 md:px-10 lg:px-16">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="section-heading mb-4 text-3xl tracking-tight sm:text-4xl">Get in touch</h2>
+        <p class="mb-8 text-black/70">Open to opportunities in IT operations, systems engineering, and portfolio governance.</p>
+        <button
+          id="footer-email"
+          class="inline-flex items-center gap-3 rounded-full border border-black bg-black px-6 py-3 text-white transition-colors hover:bg-white hover:text-black"
+        >
+          <span>won93lee@proton.me</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+        <p id="footer-copied" class="mt-3 text-sm text-black/50 opacity-0 transition-opacity">Copied to clipboard</p>
+      </div>
+    </section>
+
+    <footer class="border-t border-black/10 px-5 py-8 text-center text-sm text-black/40 sm:px-8">
+      <p>Harold F. · IT Operations &amp; Portfolio Governance</p>
+    </footer>
+  </div>
+
   <script>
     const EMAIL = 'won93lee@proton.me';
     const SENSITIVITY = 0.8;
@@ -171,32 +408,39 @@
     }, 400);
 
     // ---------- Copy email ----------
-    function copyEmail() {
-      navigator.clipboard.writeText(EMAIL).then(() => {
+    function copyEmail(showFooterFeedback) {
+      const done = () => {
         const label = document.getElementById('copied-label');
-        label.classList.remove('hidden');
-        setTimeout(() => label.classList.add('hidden'), 2000);
-      }).catch(() => {
+        if (label) {
+          label.classList.remove('hidden');
+          setTimeout(() => label.classList.add('hidden'), 2000);
+        }
+        if (showFooterFeedback) {
+          const fc = document.getElementById('footer-copied');
+          fc.style.opacity = '1';
+          setTimeout(() => { fc.style.opacity = '0'; }, 2000);
+        }
+      };
+      navigator.clipboard.writeText(EMAIL).then(done).catch(() => {
         const ta = document.createElement('textarea');
         ta.value = EMAIL;
         document.body.appendChild(ta);
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
-        const label = document.getElementById('copied-label');
-        label.classList.remove('hidden');
-        setTimeout(() => label.classList.add('hidden'), 2000);
+        done();
       });
     }
     document.getElementById('desktop-contact').addEventListener('click', (e) => {
       e.preventDefault();
-      copyEmail();
+      copyEmail(false);
     });
     document.getElementById('mobile-contact').addEventListener('click', () => {
-      copyEmail();
+      copyEmail(false);
       closeMenu();
     });
-    document.getElementById('email-pill').addEventListener('click', copyEmail);
+    document.getElementById('email-pill').addEventListener('click', () => copyEmail(false));
+    document.getElementById('footer-email').addEventListener('click', () => copyEmail(true));
 
     // ---------- Mobile menu ----------
     const hamburger = document.getElementById('hamburger');
@@ -232,6 +476,16 @@
       if (window.innerWidth >= 768) closeMenu();
     });
 
+    // ---------- Navbar background when scrolled past hero ----------
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > window.innerHeight * 0.7) {
+        navbar.classList.add('bg-white/90', 'backdrop-blur-sm', 'shadow-sm');
+      } else {
+        navbar.classList.remove('bg-white/90', 'backdrop-blur-sm', 'shadow-sm');
+      }
+    });
+
     // ---------- Video mouse-scrub ----------
     const video = document.getElementById('bg-video');
     let prevX = null;
@@ -255,6 +509,8 @@
 
     window.addEventListener('mousemove', (e) => {
       if (!video || !video.duration) return;
+      // Only scrub while near the top of the page (hero visible)
+      if (window.scrollY > window.innerHeight) return;
       if (prevX === null) {
         prevX = e.clientX;
         return;
